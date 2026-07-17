@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pre-order VOLARA One — Reserve yours</title>
+  <meta name="description" content="Reserve VOLARA One. Choose your edition, fully refundable until it ships. Founding pilots get priority delivery and a spare battery." />
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M16 6 L27 24 L16 19 L5 24 Z' fill='%2319E3C4'/%3E%3C/svg%3E" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+</head>
+<body class="page-preorder">
+  <div class="bg-fallback" aria-hidden="true"></div>
+  <div class="bg-tint" aria-hidden="true"></div>
+
+  <!-- ============ NAV ============ -->
+  <header class="nav nav--solid" id="nav">
+    <a class="nav__logo" href="index.html" aria-label="VOLARA home">
+      <svg class="nav__mark" viewBox="0 0 32 32" aria-hidden="true">
+        <path d="M16 5 L28 25 L16 19.5 L4 25 Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+      </svg>
+      <span>VOLARA</span>
+    </a>
+    <nav class="nav__links" aria-label="Primary">
+      <a href="index.html">Overview</a>
+      <a href="index.html#specs">Specs</a>
+      <a href="preorder.html" aria-current="page">Pre-order</a>
+    </nav>
+    <a href="index.html" class="glass-btn glass-btn--ghost nav__cta">← Back to site</a>
+    <button class="nav__toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span></button>
+  </header>
+
+  <main class="order">
+    <header class="order__head reveal">
+      <span class="section-tag">Reserve · VOLARA One</span>
+      <h1>Be first off the ground.</h1>
+      <p>Reserve your VOLARA One today. It's a fully refundable deposit — you're only charged when your
+        unit is ready to ship. Founding pilots move to the front of the line.</p>
+    </header>
+
+    <div class="order__grid">
+      <!-- ---- configurator / form ---- -->
+      <section class="order__form-col reveal glass" aria-label="Configure your pre-order">
+        <h2 class="order__step">Choose your edition</h2>
+        <div class="editions" id="editions" role="radiogroup" aria-label="Edition">
+          <label class="edition is-active">
+            <input type="radio" name="edition" value="standard" data-price="1499" data-batteries="2" checked />
+            <span class="edition__body">
+              <span class="edition__name">Standard</span>
+              <span class="edition__desc">Everything you need to fly. Ships after founding pilots.</span>
+            </span>
+            <span class="edition__price mono">$1,499</span>
+          </label>
+          <label class="edition">
+            <input type="radio" name="edition" value="founding" data-price="1599" data-batteries="3" />
+            <span class="edition__body">
+              <span class="edition__name">Founding Pilot <span class="edition__tag">Popular</span></span>
+              <span class="edition__desc">Priority delivery + a third battery on the house.</span>
+            </span>
+            <span class="edition__price mono">$1,599</span>
+          </label>
+        </div>
+
+        <h2 class="order__step">Quantity</h2>
+        <div class="qty" role="group" aria-label="Quantity">
+          <button type="button" class="qty__btn" id="qtyMinus" aria-label="Decrease quantity">–</button>
+          <span class="qty__val mono" id="qtyVal" aria-live="polite">1</span>
+          <button type="button" class="qty__btn" id="qtyPlus" aria-label="Increase quantity">+</button>
+        </div>
+
+        <form class="order__form" id="orderForm" novalidate>
+          <h2 class="order__step">Where do we reach you?</h2>
+          <label class="sr-only" for="email">Email address</label>
+          <input type="email" id="email" name="email" placeholder="you@studio.com" autocomplete="email" required />
+
+          <div class="order__summary" id="summary">
+            <div class="order__line"><span>VOLARA One · <span id="sumEdition">Standard</span></span><span class="mono" id="sumUnit">$1,499</span></div>
+            <div class="order__line"><span>Quantity</span><span class="mono" id="sumQty">× 1</span></div>
+            <div class="order__line"><span>Refundable deposit today</span><span class="mono">$0</span></div>
+            <div class="order__line order__line--total"><span>Due at ship</span><span class="mono" id="sumTotal">$1,499</span></div>
+          </div>
+
+          <button type="submit" class="glass-btn glass-btn--primary order__submit">Reserve now</button>
+          <p class="order__status mono" id="orderStatus" role="status" aria-live="polite">No charge today · Cancel anytime before shipping</p>
+        </form>
+      </section>
+
+      <!-- ---- product / what's included ---- -->
+      <aside class="order__aside">
+        <figure class="order__visual reveal">
+          <img src="/img/hero.jpg" alt="VOLARA One at rest on a studio desk" />
+          <span class="vf tl"></span><span class="vf tr"></span><span class="vf bl"></span><span class="vf br"></span>
+        </figure>
+
+        <div class="order__included reveal glass">
+          <h2 class="order__step">In the box</h2>
+          <ul class="included" id="includedList">
+            <li>VOLARA One drone</li>
+            <li>Controller</li>
+            <li><span id="batteryLine">Two batteries</span></li>
+            <li>Charging hub</li>
+            <li>Hard-shell case</li>
+          </ul>
+          <div class="order__chips">
+            <span class="chip">8K/30 · 10-bit</span>
+            <span class="chip">42 min flight</span>
+            <span class="chip">895 g</span>
+          </div>
+        </div>
+
+        <ul class="order__trust reveal">
+          <li><strong>Refundable</strong> — any time before your unit ships.</li>
+          <li><strong>Ships Q1</strong> — founding pilots first.</li>
+          <li><strong>Geofencing on</strong> — helps you fly within local rules.</li>
+        </ul>
+      </aside>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer__top">
+      <a class="nav__logo" href="index.html" aria-label="VOLARA home">
+        <svg class="nav__mark" viewBox="0 0 32 32" aria-hidden="true">
+          <path d="M16 5 L28 25 L16 19.5 L4 25 Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+        </svg>
+        <span>VOLARA</span>
+      </a>
+      <p class="footer__big">See beyond the ground.</p>
+    </div>
+    <div class="footer__bottom">
+      <span>© VOLARA — a fictional brand, built as a demo.</span>
+      <a href="index.html" class="footer__cta">← Back to overview</a>
+    </div>
+  </footer>
+
+  <script type="module" src="/src/preorder.js"></script>
+</body>
+</html>

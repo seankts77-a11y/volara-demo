@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>VOLARA One — See beyond the ground.</title>
+  <meta name="description" content="VOLARA One is a premium autonomous camera drone. Cinema-grade 8K footage, omnidirectional obstacle avoidance, 42 minutes of flight — a crew of one." />
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M16 6 L27 24 L16 19 L5 24 Z' fill='%2319E3C4'/%3E%3C/svg%3E" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <!-- ============ FIXED BACKGROUND LAYERS ============ -->
+  <!-- The scroll-scrubbed film. src is attached by JS only if public/bg.mp4 exists. -->
+  <video id="bgv" class="bg-video" muted playsinline preload="auto" aria-hidden="true"></video>
+  <!-- Cinematic fallback shown until a real bg.mp4 is added (keeps the site premium meanwhile). -->
+  <div class="bg-fallback" aria-hidden="true"></div>
+  <!-- Readability tint over whatever background is showing. -->
+  <div class="bg-tint" aria-hidden="true"></div>
+  <div class="motion-glow" aria-hidden="true"></div>
+
+  <!-- ============ NAV ============ -->
+  <header class="nav" id="nav">
+    <a class="nav__logo" href="#home" aria-label="VOLARA home">
+      <svg class="nav__mark" viewBox="0 0 32 32" aria-hidden="true">
+        <path d="M16 5 L28 25 L16 19.5 L4 25 Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+      </svg>
+      <span>VOLARA</span>
+    </a>
+    <nav class="nav__links" aria-label="Primary">
+      <a href="#impact">Story</a>
+      <a href="#feature-cinema">Camera</a>
+      <a href="#design">Design</a>
+      <a href="#specs">Specs</a>
+    </nav>
+    <a href="preorder.html" class="glass-btn glass-btn--primary nav__cta">Pre-order</a>
+    <button class="nav__toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span></button>
+  </header>
+
+  <main id="page">
+    <!-- ============ 1 · HERO ============ -->
+    <section class="hero" id="home">
+      <div class="hero__inner">
+        <p class="eyebrow" data-hero="1">Autonomous camera drone · VOLARA One</p>
+        <h1 class="hero__title" data-hero="2">See beyond<br><span class="accent">the ground.</span></h1>
+        <p class="hero__sub" data-hero="3">A flying cinematographer that fits in your bag. Cinema-grade footage,
+          intelligent flight, and the confidence of a full crew — captured solo.</p>
+        <div class="hero__actions" data-hero="4">
+          <a href="preorder.html" class="glass-btn glass-btn--primary">Pre-order — $1,499</a>
+          <a href="#feature-cinema" class="glass-btn glass-btn--ghost">See it fly</a>
+        </div>
+      </div>
+      <div class="hero__hud" data-hero="5" aria-hidden="true">
+        <div class="hud__cell"><span class="hud__k">ALT</span><span class="hud__v">120</span><span class="hud__u">M</span></div>
+        <div class="hud__cell"><span class="hud__k">SPD</span><span class="hud__v">54</span><span class="hud__u">KM/H</span></div>
+        <div class="hud__cell hud__cell--wide"><span class="hud__k">POS</span><span class="hud__v hud__v--mono">40.7128° N · 74.0060° W</span></div>
+        <div class="hud__cell"><span class="hud__k">REC</span><span class="hud__v hud__v--rec">● 8K</span></div>
+      </div>
+      <div class="hero__scroll" aria-hidden="true"><span>Scroll</span></div>
+    </section>
+
+    <!-- ============ 2 · IMPACT STATEMENT (pinned) ============ -->
+    <section class="impact" id="impact">
+      <div class="impact__pin">
+        <p class="impact__eyebrow">The idea</p>
+        <h2 class="impact__head">
+          <span class="word">A</span> <span class="word">crew</span> <span class="word">of</span> <span class="word">one.</span>
+          <span class="word">Everything</span> <span class="word">a</span> <span class="word">second</span> <span class="word">operator</span>
+          <span class="word">used</span> <span class="word">to</span> <span class="word">do,</span> <span class="word">VOLARA</span>
+          <span class="word">does</span> <span class="word">in</span> <span class="word">the</span> <span class="word">air —</span> <span class="word">by</span> <span class="word">itself.</span>
+        </h2>
+      </div>
+    </section>
+
+    <!-- ============ 3 · KEY FEATURE 1 — CINEMA-GRADE IMAGE ============ -->
+    <section class="feature" id="feature-cinema">
+      <div class="feature__grid">
+        <div class="feature__copy reveal">
+          <span class="section-tag">01 — Cinema-grade image</span>
+          <h2>Footage that grades<br>straight from the sky.</h2>
+          <p>A stabilized 3-axis gimbal and a 1-inch sensor capture 8K/30 and 4K/120 slow-motion in
+            10-bit color — wide dynamic range for high-contrast light, and files that hold up in the grade.</p>
+          <ul class="feature__list">
+            <li><span class="mono">8K/30</span> · full-resolution capture</li>
+            <li><span class="mono">4K/120</span> · gradeable slow-motion</li>
+            <li><span class="mono">10-bit</span> · wide dynamic range</li>
+          </ul>
+        </div>
+        <div class="feature__stat reveal glass">
+          <span class="feature__stat-num">8K</span>
+          <span class="feature__stat-label mono">HDR · 10-bit · straight out of the air</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 4 · KEY FEATURE 2 — AUTONOMY & FLIGHT ============ -->
+    <section class="feature feature--rev" id="feature-autonomy">
+      <div class="feature__grid">
+        <div class="feature__stat reveal glass">
+          <span class="feature__stat-num">42<span class="feature__stat-unit">min</span></span>
+          <span class="feature__stat-label mono">aloft · omnidirectional avoidance</span>
+        </div>
+        <div class="feature__copy reveal">
+          <span class="section-tag">02 — Flies itself, safely</span>
+          <h2>Intelligent flight you<br>can actually trust.</h2>
+          <p>Omnidirectional obstacle avoidance, AI subject tracking, and precise return-to-home keep the
+            shot locked while you focus on the moment. One-tap cinematic paths — orbit, reveal, dolly,
+            boomerang — produce director-grade moves without a second operator.</p>
+          <ul class="feature__list">
+            <li>Omnidirectional obstacle avoidance</li>
+            <li>AI subject lock &amp; tracking</li>
+            <li>Near-silent brushless motors</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 5 · DESIGN & MATERIALS ============ -->
+    <section class="design" id="design">
+      <div class="section-head reveal">
+        <span class="section-tag">03 — Design &amp; materials</span>
+        <h2>Carbon, aluminum, light.</h2>
+        <p>A unibody carbon-fiber frame and brushed aluminum arms. Matte, precise, and built to
+          disappear into your bag — then unfold in a single motion.</p>
+      </div>
+      <!-- Real VOLARA product renders, split from the generated 3-phase reference -->
+      <div class="design__strip">
+        <figure class="design-band reveal">
+          <img src="/img/hero.jpg" alt="VOLARA One at rest on a studio desk" loading="lazy" />
+          <span class="vf tl"></span><span class="vf tr"></span><span class="vf bl"></span><span class="vf br"></span>
+          <figcaption class="mono">Fig. 01 — Unibody design, at rest</figcaption>
+        </figure>
+        <figure class="design-band reveal">
+          <img src="/img/material.jpg" alt="Carbon-fiber body meeting a brushed aluminum arm, ion-cyan status light glowing" loading="lazy" />
+          <span class="vf tl"></span><span class="vf tr"></span><span class="vf bl"></span><span class="vf br"></span>
+          <figcaption class="mono">Fig. 02 — Carbon fiber, brushed aluminum, ion-cyan light</figcaption>
+        </figure>
+        <figure class="design-band reveal">
+          <img src="/img/workspace.jpg" alt="VOLARA One in a creator's studio at night" loading="lazy" />
+          <span class="vf tl"></span><span class="vf tr"></span><span class="vf bl"></span><span class="vf br"></span>
+          <figcaption class="mono">Fig. 03 — Built for the creator's studio</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ============ 6 · MADE FOR THE AUDIENCE (pinned gallery) ============ -->
+    <section class="workflow" id="workflow">
+      <div class="workflow__pin">
+        <div class="workflow__head">
+          <span class="section-tag">04 — Made for creators</span>
+          <h2>One drone, every shoot.</h2>
+        </div>
+        <div class="workflow__track" id="workflow-track">
+          <article class="workflow-card glass">
+            <img class="workflow-card__img" src="https://images.unsplash.com/photo-1505142468610-359e7d316be0?w=760&q=75&auto=format&fit=crop" alt="Aerial coastline" loading="lazy" />
+            <span class="workflow-card__idx mono">01 / 04</span>
+            <h3>Travel &amp; film</h3>
+            <p>Land in a new city and leave with establishing shots that look like a production hired a
+              pilot. Launch from your palm, tap Reveal, and let VOLARA open the scene.</p>
+          </article>
+          <article class="workflow-card glass">
+            <img class="workflow-card__img" src="https://images.unsplash.com/photo-1657346088167-b982455bf29a?w=760&q=75&auto=format&fit=crop" alt="Modern architecture" loading="lazy" />
+            <span class="workflow-card__idx mono">02 / 04</span>
+            <h3>Real estate</h3>
+            <p>Consistent orbits and rise-aways that make every listing look considered. Same path, same
+              polish, property after property.</p>
+          </article>
+          <article class="workflow-card glass">
+            <img class="workflow-card__img" src="https://images.unsplash.com/photo-1657443826820-1d528abf2a79?w=760&q=75&auto=format&fit=crop" alt="Aerial mountains and forest" loading="lazy" />
+            <span class="workflow-card__idx mono">03 / 04</span>
+            <h3>Adventure</h3>
+            <p>Subject lock and obstacle avoidance hold the shot through trees, ridgelines, and fast
+              motion — so you can focus on the run, not the drone.</p>
+          </article>
+          <article class="workflow-card glass">
+            <img class="workflow-card__img" src="https://images.unsplash.com/photo-1523380262778-076eb862d38f?w=760&q=75&auto=format&fit=crop" alt="Dark creative studio desk" loading="lazy" />
+            <span class="workflow-card__idx mono">04 / 04</span>
+            <h3>Photographers</h3>
+            <p>Add aerial to your service offering without a second operator. Repeatable, director-grade
+              moves that clients recognize as premium.</p>
+          </article>
+        </div>
+        <div class="workflow__dots" id="workflow-dots" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <!-- ============ 7 · SPECS / PERFORMANCE ============ -->
+    <section class="specs" id="specs">
+      <div class="section-head reveal">
+        <span class="section-tag">05 — The numbers</span>
+        <h2>Engineered, not exaggerated.</h2>
+      </div>
+      <div class="specs__table reveal">
+        <div class="specs__row"><span class="specs__k">Sensor</span><span class="specs__v mono">1-inch CMOS · 20MP</span></div>
+        <div class="specs__row"><span class="specs__k">Video</span><span class="specs__v mono">8K/30 · 4K/120 · 10-bit</span></div>
+        <div class="specs__row"><span class="specs__k">Stabilization</span><span class="specs__v mono">3-axis mechanical gimbal</span></div>
+        <div class="specs__row"><span class="specs__k">Flight time</span><span class="specs__v mono">42 min</span></div>
+        <div class="specs__row"><span class="specs__k">Transmission</span><span class="specs__v mono">10 km · 1080p feed</span></div>
+        <div class="specs__row"><span class="specs__k">Avoidance</span><span class="specs__v mono">Omnidirectional</span></div>
+        <div class="specs__row"><span class="specs__k">Folded size</span><span class="specs__v mono">180 × 97 × 74 mm</span></div>
+        <div class="specs__row"><span class="specs__k">Weight</span><span class="specs__v mono">895 g</span></div>
+      </div>
+    </section>
+
+    <!-- ============ 8 · PRE-ORDER CTA ============ -->
+    <section class="buy" id="buy">
+      <div class="buy__card reveal glass">
+        <span class="section-tag">06 — Reserve yours</span>
+        <h2 class="buy__title">Be first off the ground.</h2>
+        <p class="buy__amount"><span class="mono">$</span>1,499</p>
+        <p class="buy__note">Fully refundable until it ships. Founding pilots get priority delivery and a
+          spare battery on the house.</p>
+        <a href="preorder.html" class="glass-btn glass-btn--primary buy__cta">Continue to pre-order →</a>
+        <p class="buy__status mono">Choose your edition on the next page · No charge today</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ 9 · FOOTER ============ -->
+  <footer class="footer">
+    <div class="footer__top">
+      <a class="nav__logo" href="#home" aria-label="VOLARA home">
+        <svg class="nav__mark" viewBox="0 0 32 32" aria-hidden="true">
+          <path d="M16 5 L28 25 L16 19.5 L4 25 Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+        </svg>
+        <span>VOLARA</span>
+      </a>
+      <p class="footer__big">See beyond the ground.</p>
+    </div>
+    <div class="footer__bottom">
+      <span>© VOLARA — a fictional brand, built as a demo.</span>
+      <a href="preorder.html" class="footer__cta">Pre-order VOLARA One →</a>
+    </div>
+  </footer>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
