@@ -19,3 +19,5 @@ Thumbs.db
 # standalone Claude-artifact snapshots (not part of the deployed site)
 volara-artifact.html
 volara-preorder-artifact.html
+
+.vercel

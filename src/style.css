@@ -161,6 +161,23 @@ html.lenis, html.lenis body { height: auto; }
   padding: 8rem var(--pad) 4rem;
 }
 .hero__inner { max-width: var(--wrap); width: 100%; margin: 0 auto; }
+
+/* Hero intro — CSS only, so it can never get stuck hidden. Default is visible;
+   the animation's "both" fill holds each element at opacity 0 until its delay,
+   then reveals it. Under reduced motion there's no animation and it's visible. */
+[data-hero] { opacity: 1; }
+@media (prefers-reduced-motion: no-preference) {
+  [data-hero] { animation: heroIn 0.9s var(--ease) both; }
+  [data-hero="1"] { animation-delay: 0.15s; }
+  [data-hero="2"] { animation-delay: 0.27s; }
+  [data-hero="3"] { animation-delay: 0.39s; }
+  [data-hero="4"] { animation-delay: 0.51s; }
+  [data-hero="5"] { animation-delay: 0.63s; }
+}
+@keyframes heroIn {
+  from { opacity: 0; transform: translateY(26px); }
+  to { opacity: 1; transform: none; }
+}
 .hero .eyebrow { margin-bottom: 1.4rem; }
 .hero__title { font-size: clamp(3rem, 9vw, 7rem); font-weight: 700; margin-bottom: 1.4rem; }
 .hero__title .accent { color: var(--muted); }
@@ -222,8 +239,10 @@ html.lenis, html.lenis body { height: auto; }
   display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.1rem; align-items: start;
 }
 .design__strip { max-width: 1080px; margin: 0 auto; padding: 0 var(--pad); display: grid; gap: 1.1rem; }
-.design-band { position: relative; border-radius: var(--r); overflow: hidden; border: 1px solid var(--line-strong); background: var(--surface); }
-.design-band img { width: 100%; height: auto; display: block; }
+/* aspect-ratio reserves the band's height BEFORE the (lazy) image loads, so nothing
+   below shifts on load — which keeps the pinned workflow section aligned. */
+.design-band { position: relative; aspect-ratio: 1376 / 256; border-radius: var(--r); overflow: hidden; border: 1px solid var(--line-strong); background: var(--surface); }
+.design-band img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
 .design-band::after {
   content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none;
   background: linear-gradient(180deg, transparent 50%, rgba(6, 8, 12, 0.8));

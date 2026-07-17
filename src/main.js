@@ -115,20 +115,9 @@ document.querySelectorAll('a[href^="#"]').forEach((a) =>
   })
 );
 
-/* ------------------------------------------------------------------
-   Hero intro
------------------------------------------------------------------- */
-if (!reduce) {
-  gsap.set("[data-hero]", { opacity: 0, y: 26 });
-  gsap.to("[data-hero]", {
-    opacity: 1,
-    y: 0,
-    duration: 0.9,
-    ease: "power3.out",
-    stagger: 0.12,
-    delay: 0.15,
-  });
-}
+/* Hero intro is handled by a pure-CSS animation (see [data-hero] in style.css).
+   CSS animations advance on the document timeline and can't get stuck invisible
+   the way an interrupted rAF/JS tween can — the hero always ends up visible. */
 
 /* ------------------------------------------------------------------
    Scroll reveals (CSS transition via .in)
@@ -265,6 +254,15 @@ window.addEventListener("load", () => ScrollTrigger.refresh());
 if (document.fonts && document.fonts.ready) {
   document.fonts.ready.then(() => ScrollTrigger.refresh());
 }
+// If the page first rendered while the tab was in the background, pin positions can
+// be measured before layout settles — recompute them when it becomes visible.
+document.addEventListener("visibilitychange", () => {
+  if (!document.hidden) ScrollTrigger.refresh();
+});
+// Any late-loading image that still changes height should re-sync the triggers.
+document.querySelectorAll("img").forEach((img) => {
+  if (!img.complete) img.addEventListener("load", () => ScrollTrigger.refresh(), { once: true });
+});
 
 /* ------------------------------------------------------------------
    Dev hooks for verification in the browser console
