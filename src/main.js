@@ -147,6 +147,37 @@ if (reduce) {
 }
 
 /* ------------------------------------------------------------------
+   Hero parallax — content fades and drifts as you scroll away, and fades
+   back up into place as you scroll up. Tied directly to scroll position, so
+   at the top it's always fully visible (can't get stuck hidden).
+------------------------------------------------------------------ */
+if (!reduce) {
+  const heroInner = document.querySelector(".hero__inner");
+  const heroEl = document.querySelector(".hero");
+  if (heroInner && heroEl) {
+    let ticking = false;
+    const applyHeroParallax = () => {
+      ticking = false;
+      const h = heroEl.offsetHeight || window.innerHeight;
+      const p = Math.min(1, Math.max(0, window.scrollY / h));
+      heroInner.style.opacity = String(1 - p * 0.9);
+      heroInner.style.transform = `translateY(${p * 40}px)`;
+    };
+    applyHeroParallax();
+    window.addEventListener(
+      "scroll",
+      () => {
+        if (!ticking) {
+          ticking = true;
+          requestAnimationFrame(applyHeroParallax);
+        }
+      },
+      { passive: true }
+    );
+  }
+}
+
+/* ------------------------------------------------------------------
    Impact — pinned word-by-word reveal
 ------------------------------------------------------------------ */
 function setupImpact() {
