@@ -13,7 +13,9 @@
 .nav__links a[aria-current="page"] { color: var(--accent); }
 
 /* ---------------- layout ---------------- */
-.order { max-width: var(--wrap); margin: 0 auto; padding: clamp(7rem, 14vh, 10rem) var(--pad) 4rem; }
+/* Lift content above the fixed background layers (.bg-fallback / .bg-tint), exactly like
+   #page does on the landing page — otherwise the opaque background paints over it. */
+.order { position: relative; z-index: 10; max-width: var(--wrap); margin: 0 auto; padding: clamp(7rem, 14vh, 10rem) var(--pad) 4rem; }
 .order__head { max-width: 60ch; margin-bottom: clamp(2.5rem, 6vw, 4rem); }
 .order__head h1 { font-size: clamp(2.4rem, 6vw, 4rem); margin: 1rem 0; text-wrap: balance; }
 .order__head p { color: var(--muted); font-size: 1.05rem; }
