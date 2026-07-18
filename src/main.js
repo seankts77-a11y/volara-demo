@@ -217,8 +217,8 @@ function setupWorkflow() {
   });
 }
 
-setupImpact();
-setupWorkflow();
+/* The impact statement and workflow cards are now static, revealed sections — no pinning.
+   (setupImpact/setupWorkflow above are intentionally left unused.) */
 
 /* ------------------------------------------------------------------
    Pre-order form

@@ -199,15 +199,15 @@ html.lenis, html.lenis body { height: auto; }
 .hud__v--rec { color: var(--accent); }
 .hero__scroll { position: absolute; bottom: 1.6rem; left: 50%; transform: translateX(-50%); color: var(--muted); font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; opacity: 0.7; }
 
-/* ---------------- 2 · impact (pinned) ---------------- */
+/* ---------------- 2 · impact (full-height statement, revealed) ---------------- */
 .impact { position: relative; }
 .impact__pin {
-  min-height: 100svh; display: flex; flex-direction: column; justify-content: center;
-  padding: 6rem var(--pad); max-width: 1100px; margin: 0 auto;
+  min-height: 80svh; display: flex; flex-direction: column; justify-content: center;
+  padding: 8rem var(--pad); max-width: 1100px; margin: 0 auto;
 }
 .impact__eyebrow { font-family: var(--font-mono); font-size: 0.74rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.5rem; }
 .impact__head { font-size: clamp(2rem, 5.6vw, 4.6rem); font-weight: 600; letter-spacing: -0.02em; }
-.impact__head .word { display: inline-block; opacity: 0.12; will-change: opacity, transform, filter; }
+.impact__head .word { display: inline-block; }
 
 /* ---------------- 3/4 · feature ---------------- */
 .feature { padding: clamp(5rem, 12vw, 9rem) 0; }
@@ -249,17 +249,14 @@ html.lenis, html.lenis body { height: auto; }
 }
 .design-band figcaption { position: absolute; z-index: 2; left: clamp(1rem, 3vw, 1.6rem); bottom: 0.9rem; font-size: 0.72rem; letter-spacing: 0.06em; color: var(--text); }
 
-/* ---------------- 6 · workflow (pinned gallery) ---------------- */
-.workflow { position: relative; }
-.workflow__pin { min-height: 100svh; position: relative; overflow: hidden; }
-.workflow__head { position: absolute; top: clamp(5rem, 12vh, 9rem); left: 50%; transform: translateX(-50%); width: 100%; max-width: var(--wrap); padding: 0 var(--pad); text-align: center; }
+/* ---------------- 6 · workflow (static responsive card grid) ---------------- */
+.workflow { padding: clamp(5rem, 12vw, 8rem) 0; }
+.workflow__pin { max-width: var(--wrap); margin: 0 auto; padding: 0 var(--pad); }
+.workflow__head { text-align: center; margin-bottom: 3rem; }
 .workflow__head h2 { font-size: clamp(2rem, 5vw, 3.4rem); }
-.workflow__track { position: absolute; inset: 0; }
-.workflow-card {
-  position: absolute; top: 54%; left: 50%; width: min(460px, 82vw);
-  transform: translate(-50%, -50%); border-radius: var(--r); padding: 0; overflow: hidden;
-  will-change: transform, opacity, filter;
-}
+/* auto-fit: 2 columns when wide, 1 column when narrow — no breakpoint math, can't misalign */
+.workflow__track { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.1rem; }
+.workflow-card { position: relative; border-radius: var(--r); overflow: hidden; }
 .workflow-card__img { width: 100%; height: clamp(150px, 22vh, 210px); object-fit: cover; display: block; filter: brightness(0.82) saturate(0.82) contrast(1.04); }
 /* darken + blend the scene photo into the card so it matches the cinematic mood */
 .workflow-card::after {
@@ -270,9 +267,7 @@ html.lenis, html.lenis body { height: auto; }
 .workflow-card__idx { display: block; color: var(--accent); font-size: 0.75rem; letter-spacing: 0.12em; margin: clamp(1.4rem, 3vw, 1.8rem) clamp(1.6rem, 4vw, 2.4rem) 0; }
 .workflow-card h3 { font-size: clamp(1.5rem, 3.4vw, 2.2rem); margin: 0.7rem clamp(1.6rem, 4vw, 2.4rem); }
 .workflow-card p { color: var(--muted); margin: 0 clamp(1.6rem, 4vw, 2.4rem) clamp(1.8rem, 4vw, 2.2rem); }
-.workflow__dots { position: absolute; bottom: clamp(2.5rem, 8vh, 5rem); left: 50%; transform: translateX(-50%); display: flex; gap: 0.5rem; }
-.workflow__dots span { width: 7px; height: 7px; border-radius: 50%; background: var(--line-strong); transition: background 0.3s, transform 0.3s; }
-.workflow__dots span.on { background: var(--accent); transform: scale(1.25); }
+.workflow__dots { display: none; }
 
 /* ---------------- 7 · specs ---------------- */
 .specs { padding: clamp(5rem, 12vw, 9rem) 0; }
@@ -319,13 +314,6 @@ html.lenis, html.lenis body { height: auto; }
   .nav.open .nav__links { display: flex; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; background: rgba(8, 10, 14, 0.96); backdrop-filter: blur(14px); padding: 1.5rem var(--pad); gap: 1.2rem; border-bottom: 1px solid var(--line); }
   .feature__grid, .feature--rev .feature__grid { grid-template-columns: 1fr; }
   .feature--rev .feature__stat { order: 2; }
-
-  /* workflow: stack cards vertically instead of the pinned gallery */
-  .workflow__pin { min-height: auto; overflow: visible; padding: 5rem 0; }
-  .workflow__head { position: static; transform: none; text-align: left; margin-bottom: 2rem; }
-  .workflow__track { position: static; inset: auto; display: grid; gap: 1rem; max-width: var(--wrap); margin: 0 auto; padding: 0 var(--pad); }
-  .workflow-card { position: relative; top: auto; left: auto; transform: none; width: 100%; opacity: 1; filter: none; }
-  .workflow__dots { display: none; }
 }
 @media (max-width: 560px) {
   .hud__cell--wide { flex: 1 1 100%; }
