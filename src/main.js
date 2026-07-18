@@ -123,14 +123,27 @@ document.querySelectorAll('a[href^="#"]').forEach((a) =>
    Scroll reveals (CSS transition via .in)
 ------------------------------------------------------------------ */
 const reveals = gsap.utils.toArray(".reveal");
+const forceReveal = () => reveals.forEach((el) => el.classList.add("in"));
 if (reduce) {
-  reveals.forEach((el) => el.classList.add("in"));
+  forceReveal();
 } else {
   ScrollTrigger.batch(".reveal", {
     start: "top 86%",
     onEnter: (batch) =>
       batch.forEach((el, i) => gsap.delayedCall(i * 0.07, () => el.classList.add("in"))),
   });
+  // Failsafe: content must never stay invisible. If a reveal never fires (batch missed
+  // it, tab first painted in the background, etc.), force everything visible after load.
+  window.addEventListener("load", () => setTimeout(forceReveal, 1600));
+  // Same guarantee for the hero intro: land its CSS animation on the finished (visible)
+  // state in case it was paused because the tab first painted in the background.
+  window.addEventListener("load", () =>
+    setTimeout(() => {
+      document.querySelectorAll("[data-hero]").forEach((el) =>
+        el.getAnimations().forEach((a) => a.finish())
+      );
+    }, 1800)
+  );
 }
 
 /* ------------------------------------------------------------------
@@ -257,7 +270,7 @@ if (document.fonts && document.fonts.ready) {
 // If the page first rendered while the tab was in the background, pin positions can
 // be measured before layout settles — recompute them when it becomes visible.
 document.addEventListener("visibilitychange", () => {
-  if (!document.hidden) ScrollTrigger.refresh();
+  if (!document.hidden) { ScrollTrigger.refresh(); forceReveal(); }
 });
 // Any late-loading image that still changes height should re-sync the triggers.
 document.querySelectorAll("img").forEach((img) => {
