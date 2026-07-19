@@ -159,9 +159,10 @@ if (!reduce) {
     const applyHeroParallax = () => {
       ticking = false;
       const h = heroEl.offsetHeight || window.innerHeight;
-      const p = Math.min(1, Math.max(0, window.scrollY / h));
-      heroInner.style.opacity = String(1 - p * 0.9);
-      heroInner.style.transform = `translateY(${p * 40}px)`;
+      // fully faded/risen after ~65% of the hero has scrolled past
+      const p = Math.min(1, Math.max(0, window.scrollY / (h * 0.65)));
+      heroInner.style.opacity = String(1 - p);
+      heroInner.style.transform = `translateY(${p * -90}px)`; // rise up as you scroll down
     };
     applyHeroParallax();
     window.addEventListener(
