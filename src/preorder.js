@@ -35,6 +35,31 @@ if (reduce || !("IntersectionObserver" in window)) {
 }
 
 /* ------------------------------------------------------------------
+   Header parallax — the page title fades and lifts as you scroll down,
+   matching the landing hero. Measured from the container's on-screen
+   position on a rAF loop, so it runs regardless of what actually scrolls.
+------------------------------------------------------------------ */
+if (!reduce) {
+  const head = document.querySelector(".order__head");
+  const orderEl = document.querySelector(".order");
+  if (head && orderEl) {
+    let last = -1;
+    const tickHead = () => {
+      const rect = orderEl.getBoundingClientRect();
+      const scrolled = Math.max(0, -rect.top);
+      const p = Math.min(1, scrolled / (window.innerHeight * 0.65));
+      if (Math.abs(p - last) > 0.002) {
+        last = p;
+        head.style.opacity = String(1 - p);
+        head.style.transform = `translateY(${p * -80}px)`;
+      }
+      requestAnimationFrame(tickHead);
+    };
+    requestAnimationFrame(tickHead);
+  }
+}
+
+/* ------------------------------------------------------------------
    Configurator: edition + quantity drive a live order summary
 ------------------------------------------------------------------ */
 const editions = [...document.querySelectorAll(".edition")];
