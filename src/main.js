@@ -155,26 +155,23 @@ if (!reduce) {
   const heroInner = document.querySelector(".hero__inner");
   const heroEl = document.querySelector(".hero");
   if (heroInner && heroEl) {
-    let ticking = false;
-    const applyHeroParallax = () => {
-      ticking = false;
-      const h = heroEl.offsetHeight || window.innerHeight;
-      // fully faded/risen after ~65% of the hero has scrolled past
-      const p = Math.min(1, Math.max(0, window.scrollY / (h * 0.65)));
-      heroInner.style.opacity = String(1 - p);
-      heroInner.style.transform = `translateY(${p * -90}px)`; // rise up as you scroll down
+    let last = -1;
+    // Measured from the hero's own on-screen position (not window.scrollY) and driven by
+    // rAF, so it works regardless of which element actually scrolls — window, Lenis, or
+    // an embedded pane. Writes only when the value meaningfully changes.
+    const tickHero = () => {
+      const rect = heroEl.getBoundingClientRect();
+      const h = rect.height || window.innerHeight;
+      const scrolledPast = Math.max(0, -rect.top); // px of hero above the viewport top
+      const p = Math.min(1, scrolledPast / (h * 0.65));
+      if (Math.abs(p - last) > 0.002) {
+        last = p;
+        heroInner.style.opacity = String(1 - p);
+        heroInner.style.transform = `translateY(${p * -90}px)`; // rise as you scroll down
+      }
+      requestAnimationFrame(tickHero);
     };
-    applyHeroParallax();
-    window.addEventListener(
-      "scroll",
-      () => {
-        if (!ticking) {
-          ticking = true;
-          requestAnimationFrame(applyHeroParallax);
-        }
-      },
-      { passive: true }
-    );
+    requestAnimationFrame(tickHero);
   }
 }
 
